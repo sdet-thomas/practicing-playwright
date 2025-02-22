@@ -24,6 +24,19 @@ export class LoginPage extends BasePage {
     }
 
     /**
+     * Waits for the login page to be fully loaded by checking the visibility of the login button.
+     * @returns {Promise<boolean>} True if the login button is visible, false otherwise.
+     */
+    override async loaded(): Promise<boolean> {
+        try {
+            await this.loginButton.waitFor({ state: 'visible' });
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    /**
      * Logs in with the provided username and password.
      * @param {string} username - The username to log in with.
      * @param {string} password - The password to log in with.

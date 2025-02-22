@@ -49,7 +49,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import homeData from './data/homeData.json';
 
-const { categoriesFilters, searchTerms, sortOptions } = homeData
+const { categoriesFilters, searchTerms, sortOptions } = homeData;
 
 test.describe('Home Page', () => {
     let homePage: HomePage;
@@ -59,8 +59,11 @@ test.describe('Home Page', () => {
         await homePage.goto();
     });
 
-    // Test search functionality with different search terms
-    // Data source: ./data/searchTerms.json
+    /**
+     * Test search functionality with different search terms.
+     * @param {string} term - The search term to use.
+     * @param {number} expectedCount - The expected number of results.
+     */
     searchTerms.forEach(({ term, expectedCount }) => {
         test(`can search for ${term}`, async () => {
             await homePage.searchFor(term);
@@ -68,8 +71,11 @@ test.describe('Home Page', () => {
         });
     });
 
-    // Test filtering functionality with different categories
-    // Data source: ./data/categoriesFilters.json
+    /**
+     * Test filtering functionality with different categories.
+     * @param {string[]} categories - The categories to filter by.
+     * @param {number} expectedCount - The expected number of results.
+     */
     categoriesFilters.forEach(({ categories, expectedCount }) => {
         test(`can filter by categories ${categories.join(', ')}`, async () => {
             for (const element of categories) {
@@ -79,8 +85,11 @@ test.describe('Home Page', () => {
         });
     });
 
-    // Test sorting functionality with different sort options
-    // Data source: ./data/sortOptions.json
+    /**
+     * Test sorting functionality with different sort options.
+     * @param {string} option - The sort option to use.
+     * @param {string} expectedFirstItem - The expected first item after sorting.
+     */
     sortOptions.forEach(({ option, expectedFirstItem }) => {
         test(`can sort by ${option}`, async () => {
             await homePage.sortProducts(option);
@@ -88,7 +97,7 @@ test.describe('Home Page', () => {
             expect(products[0].name).toEqual(expectedFirstItem);
         });
     });
-})
+});
 ```
 
 ## License
