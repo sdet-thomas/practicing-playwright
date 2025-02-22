@@ -1,0 +1,23 @@
+{
+    "categoriesFilters": [
+        { "categories": ["Hammer"], "expectedCount": 7 },
+        { "categories": ["Hand Saw"], "expectedCount": 1 },
+        { "categories": ["Wrench"], "expectedCount": 3 },
+        { "categories": ["Power Tools"], "expectedCount": 5 },
+        { "categories": ["Screwdriver", "Chisels"], "expectedCount": 5 },
+        { "categories": ["Sander", "Drill", "Tool Belts", "Storage Solutions"], "expectedCount": 7 }
+    ],
+    "searchTerms": [
+        { "term": "hammer", "expectedCount": 7 },
+        { "term": "nail", "expectedCount": 0 },
+        { "term": "screw", "expectedCount": 5 },
+        { "term": "thor hammer", "expectedCount": 1 },
+        { "term": "pliers", "expectedCount": 4 }
+    ],
+    "sortOptions": [
+        { "option": "Name (A - Z)", "expectedFirstItem": "Adjustable Wrench" },
+        { "option": "Name (Z - A)", "expectedFirstItem": "Wood Saw" },
+        { "option": "Price (Low - High)", "expectedFirstItem": "Washers" },
+        { "option": "Price (High - Low)", "expectedFirstItem": "Drawer Tool Cabinet" }
+    ]
+}

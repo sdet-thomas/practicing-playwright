@@ -1,8 +1,0 @@
-[
-    { "categories": ["Hammer"], "expectedCount": 7 },
-    { "categories": ["Hand Saw"], "expectedCount": 1 },
-    { "categories": ["Wrench"], "expectedCount": 3 },
-    { "categories": ["Power Tools"], "expectedCount": 5 },
-    { "categories": ["Screwdriver", "Chisels"], "expectedCount": 5 },
-    { "categories": ["Sander", "Drill", "Tool Belts", "Storage Solutions"], "expectedCount": 7 }
-]

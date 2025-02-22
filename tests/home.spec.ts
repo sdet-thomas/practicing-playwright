@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
-import { searchTerms, categoriesFilters, sortOptions } from './data';
+import homeData from './data/homeData.json';
+
+const { categoriesFilters, searchTerms, sortOptions } = homeData
 
 test.describe('Home Page', () => {
     let homePage: HomePage;
