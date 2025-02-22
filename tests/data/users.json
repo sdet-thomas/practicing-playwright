@@ -1,0 +1,11 @@
+{
+  "validUsers": [
+    { "username": "admin@practicesoftwaretesting.com", "password": "welcome01", "expectedUserName": "John Doe" },
+    { "username": "customer@practicesoftwaretesting.com", "password": "welcome01", "expectedUserName": "Jane Doe" },
+    { "username": "customer2@practicesoftwaretesting.com", "password": "welcome01", "expectedUserName": "Jack Howe" }
+  ],
+  "invalidUsers": [
+    { "username": "admin@practicesoftwaretesting.com", "password": "wrongPassword" },
+    { "username": "wrongUsername@practicesoftwaretesting.com", "password": "welcome01" }
+  ]
+}
