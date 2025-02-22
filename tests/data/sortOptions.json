@@ -1,0 +1,6 @@
+[
+    { "option": "Name (A - Z)", "expectedFirstItem": "Adjustable Wrench" },
+    { "option": "Name (Z - A)", "expectedFirstItem": "Wood Saw" },
+    { "option": "Price (Low - High)", "expectedFirstItem": "Washers" },
+    { "option": "Price (High - Low)", "expectedFirstItem": "Drawer Tool Cabinet" }
+]
