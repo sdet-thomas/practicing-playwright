@@ -58,6 +58,7 @@ test.describe('Home Page', () => {
     });
 
     // Test search functionality with different search terms
+    // Data source: ./data/searchTerms.json
     searchTerms.forEach(({ term, expectedCount }) => {
         test(`can search for ${term}`, async () => {
             await homePage.searchFor(term);
@@ -66,6 +67,7 @@ test.describe('Home Page', () => {
     });
 
     // Test filtering functionality with different categories
+    // Data source: ./data/categoriesFilters.json
     categoriesFilters.forEach(({ categories, expectedCount }) => {
         test(`can filter by categories ${categories.join(', ')}`, async () => {
             for (const element of categories) {
@@ -76,6 +78,7 @@ test.describe('Home Page', () => {
     });
 
     // Test sorting functionality with different sort options
+    // Data source: ./data/sortOptions.json
     sortOptions.forEach(({ option, expectedFirstItem }) => {
         test(`can sort by ${option}`, async () => {
             await homePage.sortProducts(option);
@@ -83,7 +86,7 @@ test.describe('Home Page', () => {
             expect(products[0].name).toEqual(expectedFirstItem);
         });
     });
-});
+})
 ```
 
 ## License
