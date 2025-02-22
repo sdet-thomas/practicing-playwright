@@ -1,19 +1,18 @@
 import { Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class AccountPage {
-    readonly page: Page;
+export class AccountPage extends BasePage {
     readonly pageTitle: Locator;
 
     constructor(page: Page) {
-        this.page = page;
-        this.pageTitle = page.getByTestId('page-title');
+        super(page);
     }
 
     /**
      * Navigates to the account page.
      * @returns {Promise<void>}
      */
-    async goto(): Promise<void> {
+    override async goto(): Promise<void> {
         await this.page.goto('https://practicesoftwaretesting.com/account');
     }
 

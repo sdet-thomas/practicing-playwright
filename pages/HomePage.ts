@@ -1,23 +1,16 @@
 import { Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class HomePage {
-    readonly page: Page;
+export class HomePage extends BasePage {
     readonly searchInput: Locator;
     readonly searchButton: Locator;
     readonly productGrid: Locator;
 
     constructor(page: Page) {
-        this.page = page;
-                this.searchInput = page.getByTestId('search-query');
-                this.searchButton = page.getByTestId('search-submit');
-                this.productGrid = page.locator(".col-md-9")
-    }
-
-    /**
-     * Navigate to the home page.
-     */
-    async goto() {
-        await this.page.goto('https://practicesoftwaretesting.com/');
+        super(page);
+        this.searchInput = page.getByTestId('search-query');
+        this.searchButton = page.getByTestId('search-submit');
+        this.productGrid = page.locator(".col-md-9");
     }
 
     /**
@@ -36,7 +29,7 @@ export class HomePage {
         await this.searchInput.click();
         await this.searchInput.fill(term);
         await this.searchButton.click();
-        await this.page.getByTestId('search_completed').waitFor({ state: 'visible' });
+        await this.waitForTestId('search_completed');
     }
     
     /**
@@ -63,7 +56,7 @@ export class HomePage {
     async filterByCategory(categoryName: string) {
         const categoryFilter = this.page.locator(`label:has-text("${categoryName}") input[type="checkbox"]`);
         await categoryFilter.click();
-        await this.page.getByTestId('filter_completed').waitFor({ state: 'visible' });
+        await this.waitForTestId('filter_completed');
     }
 
     /**
@@ -73,6 +66,6 @@ export class HomePage {
     async sortProducts(sortOption: string) {
         const sortSelect = this.page.locator('[data-test="sort"]');
         await sortSelect.selectOption(sortOption);
-        await this.page.getByTestId('sorting_completed').waitFor({ state: 'visible' });
+        await this.waitForTestId('sorting_completed');
     }
 }
