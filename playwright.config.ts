@@ -32,6 +32,11 @@ export default defineConfig({
     trace: 'on-first-retry',
     /* Custom test ID attribute */
     testIdAttribute: 'data-test',
+    reporter: [['allure-playwright', {
+      detail: true,
+      outputFolder: 'allure-results',
+      suiteTitle: false
+    }]]
   },
 
   /* Configure projects for major browsers */
