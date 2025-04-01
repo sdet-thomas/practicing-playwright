@@ -1,104 +1,102 @@
 # Practicing Playwright
 
-This project is a sample Playwright test suite for practicing automated testing with Playwright.
+This project demonstrates automated testing with Playwright for a sample e-commerce application. It includes tests for product search, filtering, sorting, and user authentication.
+
+## Live Reports
+- [Allure Report](https://sdet-thomas.github.io/practicing-playwright) - View detailed test execution results
 
 ## Project Structure
 
-- `tests/`: Contains the test files.
-- `pages/`: Contains the page object models.
-- `tests/data/`: Contains the test data in JSON format.
-- `tests-examples/`: Contains example tests provided by Playwright.
-- `playwright.config.ts`: Playwright configuration file.
-- `.github/workflows/`: Contains GitHub Actions workflows for CI.
+- `tests/`: Test specifications (.spec.ts) and feature files (.feature)
+- `pages/`: Page Object Models implementing the Page Object Pattern
+- `tests/data/`: Test data files in JSON format
+- `allure-results/`: Raw Allure test result files
+- `playwright.config.ts`: Playwright configuration
 
-## Setup
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS version)
+- npm or yarn
+
+### Installation
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-username/practicing-playwright.git
-    cd practicing-playwright
-    ```
+   ```sh
+   git clone https://github.com/sdet-thomas/practicing-playwright.git
+   cd practicing-playwright
+   ```
 
 2. Install dependencies:
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 3. Install Playwright browsers:
-    ```sh
-    npx playwright install --with-deps
-    ```
+   ```sh
+   npx playwright install --with-deps
+   ```
 
 ## Running Tests
 
-To run the tests, use the following command:
+Run all tests:
 ```sh
 npx playwright test
 ```
 
-## Running Tests in CI
-
-This project includes a GitHub Actions workflow to run the tests on every push and pull request. The workflow is defined in `.github/workflows/playwright.yml`.
-
-## Writing Tests
-
-Tests are written using the Playwright test runner. Here is an example test located in `tests/home.spec.ts`:
-
-```typescript
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage';
-import homeData from './data/homeData.json';
-
-const { categoriesFilters, searchTerms, sortOptions } = homeData;
-
-test.describe('Home Page', () => {
-    let homePage: HomePage;
-
-    test.beforeEach(async ({ page }) => {
-        homePage = new HomePage(page);
-        await homePage.goto();
-    });
-
-    /**
-     * Test search functionality with different search terms.
-     * @param {string} term - The search term to use.
-     * @param {number} expectedCount - The expected number of results.
-     */
-    searchTerms.forEach(({ term, expectedCount }) => {
-        test(`can search for ${term}`, async () => {
-            await homePage.searchFor(term);
-            expect(await homePage.gridCount()).toEqual(expectedCount);
-        });
-    });
-
-    /**
-     * Test filtering functionality with different categories.
-     * @param {string[]} categories - The categories to filter by.
-     * @param {number} expectedCount - The expected number of results.
-     */
-    categoriesFilters.forEach(({ categories, expectedCount }) => {
-        test(`can filter by categories ${categories.join(', ')}`, async () => {
-            for (const element of categories) {
-                await homePage.filterByCategory(element);
-            }
-            expect(await homePage.gridCount()).toEqual(expectedCount);
-        });
-    });
-
-    /**
-     * Test sorting functionality with different sort options.
-     * @param {string} option - The sort option to use.
-     * @param {string} expectedFirstItem - The expected first item after sorting.
-     */
-    sortOptions.forEach(({ option, expectedFirstItem }) => {
-        test(`can sort by ${option}`, async () => {
-            await homePage.sortProducts(option);
-            const products = await homePage.getProducts();
-            expect(products[0].name).toEqual(expectedFirstItem);
-        });
-    });
-});
+Run specific tests:
+```sh
+npx playwright test login.spec.ts
 ```
+
+Run tests with UI Mode:
+```sh
+npx playwright test --ui
+```
+
+Generate and open Allure report locally:
+```sh
+npx allure generate allure-results --clean && npx allure open
+```
+
+## Features Tested
+
+- **User Authentication**
+  - Login with valid credentials
+  - Login failure with invalid credentials
+  - User logout functionality
+
+- **Product Search & Filter**
+  - Search products with different terms
+  - Filter products by categories
+  - Sort products by name and price
+
+## Continuous Integration
+
+Tests are automatically run on GitHub Actions with each push and pull request to the main branch. The workflow:
+
+1. Sets up the environment
+2. Installs dependencies
+3. Runs tests
+4. Generates reports
+5. Publishes the Allure report to GitHub Pages
+
+## Tech Stack
+
+- **Playwright**: Test automation framework
+- **TypeScript**: Programming language
+- **Allure**: Test reporting
+- **GitHub Actions**: CI/CD
+- **Page Object Model**: Design pattern for test structure
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a pull request
 
 ## License
 
